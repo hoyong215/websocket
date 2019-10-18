@@ -42,7 +42,8 @@ var httpsServer = https.createServer(function (request, response) {
 	response.end();
 });
 // 포트설정
-httpsServer.listen(HTTP_SERVER_PORT, () => {
+httpsServer.listen(HTTP_SERVER_PORT, (req, res) => {
+	res.send("<h1>hello heroku node.js world</h1>");
 	console.log(new Date() + ' : Server running at');
 });
 
