@@ -35,12 +35,19 @@ var https = require('https');
 // 파일 시스템 모듈
 var fs = require('fs');
 
+// 인증서 파일(ca, key, cert 세가지 인자가 필요)
+var https_options = {
+    key:  fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.crt'),
+    ca:   fs.readFileSync('server.crt')
+};
+
 //  웹서버 생성
-var httpsServer = https.createServer(function (request, response) {
+var httpsServer = https.createServer( https_options, function(request, response) {
 	console.log(new Date() + ' : nodejs page : test');
-	console.log((new Date()) + ' Received request for ' + request.url);
-	response.writeHead(404);
-	response.end();
+    console.log((new Date()) + ' Received request for ' + request.url);
+    response.writeHead(404);
+    response.end();
 });
 
 
