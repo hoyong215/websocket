@@ -1,4 +1,4 @@
-
+/*
 var http = require('http');
 var fs = require('fs');
 var express = require('express');
@@ -19,7 +19,7 @@ router.get("/", function (req, res) {
 http.createServer(app).listen(port, function () {
 	console.log('server run');
 });
-
+*/
 
 const HTTP_SERVER_PORT = 8887;
 const XCTL_SERVER_IP = '121.134.7.206'
@@ -40,6 +40,10 @@ var httpsServer = https.createServer(function (request, response) {
 	console.log((new Date()) + ' Received request for ' + request.url);
 	response.writeHead(404);
 	response.end();
+});
+// 포트설정
+httpsServer.listen(HTTP_SERVER_PORT, () => {
+	console.log(new Date() + ' : Server running at');
 });
 
 /*
