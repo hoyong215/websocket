@@ -30,15 +30,9 @@ app.get('/', function(request, response) {
   response.send('Hello World 2!');
 });
 
-var privateKey = fs.readFileSync(__dirname + '/ssl/server.key').toString();
-var certificate = fs.readFileSync(__dirname + '/ssl/gandiSSL.pem').toString();
 
-var options = {
-  key: privateKey,
-  cert: certificate
-};
 
-https.createServer(options, app).listen(process.env.PORT, function () {
+https.createServer(app).listen(process.env.PORT, function () {
   console.log("Express server listening on port " + app.get('port'));
 });
 
