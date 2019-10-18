@@ -21,6 +21,28 @@ http.createServer(app).listen(port, function () {
 });
 */
 
+var app = express();
+
+app.set('port', process.env.PORT || 3000);
+app.use(express.logger());
+
+app.get('/', function(request, response) {
+  response.send('Hello World 2!');
+});
+
+var privateKey = fs.readFileSync(__dirname + '/ssl/server.key').toString();
+var certificate = fs.readFileSync(__dirname + '/ssl/gandiSSL.pem').toString();
+
+var options = {
+  key: privateKey,
+  cert: certificate
+};
+
+https.createServer(options, app).listen(process.env.PORT, function () {
+  console.log("Express server listening on port " + app.get('port'));
+});
+
+/*
 const HTTP_SERVER_PORT = 8887;
 const XCTL_SERVER_IP = '121.134.7.206'
 const XCTL_SERVER_PORT = '5050';
@@ -41,13 +63,10 @@ var httpsServer = https.createServer(function (request, response) {
 	response.writeHead(404);
 	response.end();
 });
-// 포트설정
-httpsServer.listen(HTTP_SERVER_PORT, (req, res) => {
-	res.send("<h1>hello heroku node.js world</h1>");
-	console.log(new Date() + ' : Server running at');
-});
 
-/*
+
+
+
 
 // 인증서 파일(ca, key, cert 세가지 인자가 필요)
 var https_options = {
