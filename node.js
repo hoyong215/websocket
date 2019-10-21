@@ -1,26 +1,20 @@
+var http = require('http');
 var fs = require('fs');
-
-var options = {
-    key:  fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.crt'),
-    ca:   fs.readFileSync('server.crt')
-};
-
-var app = require('https').createServer(options, handler),
-    io = require('socket.io').listen(app);
-
-function handler(req, res) {
-    res.writeHead(200);
-    res.end("welcome sir!");
-}
-
-io.sockets.on('connection', function (socket) {
-    socket.on('message', function (data) {
-        socket.broadcast.emit('message', data);
-    });
+var express = require('express');
+var bodyParser = require('body-parser');
+var ejs = require('ejs');
+var app = express();
+app.use(bodyParser());
+var router = express.Router();
+app.use(express.static('public'));
+app.use(router);
+var port = process.env.PORT || 3000;
+router.get("/", function (req, res) {
+	res.send("<h1>hello heroku node.js world</h1>");
 });
-
-app.listen(8543);
+http.createServer(app).listen(port, function () {
+	console.log('server run');
+});
 
 
 
