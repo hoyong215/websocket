@@ -10,6 +10,12 @@ app.use(express.static('public'));
 app.use(router);
 var port = process.env.PORT || 3000;
 
+// 소켓 모듈 (XCTL 연동용)
+var net = require('net');
+// 웹소켓 모듈 (UI 연결용)
+var WebSocketServer = require('ws').Server;
+
+
 router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1>");
 });
@@ -17,6 +23,7 @@ router.get("/", function (req, res) {
 http.createServer(app).listen(port, function () {
 	console.log('server run');
 });
+
 
 
 
