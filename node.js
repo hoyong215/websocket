@@ -12,13 +12,13 @@ const port = process.env.PORT || 3000;
 //const HTTP_SERVER_PORT = 8887;
 const XCTL_SERVER_IP = '121.134.7.206'
 const XCTL_SERVER_PORT = '5050';
-
+/*
 // 암호화 모듈
 const crypto = require('crypto');
 
 // 파일 시스템 모듈
 var fs = require('fs');
-
+*/
 router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT);
 });
