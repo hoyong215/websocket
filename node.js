@@ -30,6 +30,11 @@ var wss = new WebSocketServer({
 	//,autoAcceptConnections: false
 });
 
+// 소켓 모듈 (XCTL 연동용)
+var net = require('net'); 
+
+// 암호화 모듈
+const crypto = require('crypto');
 
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
