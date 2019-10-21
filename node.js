@@ -2,8 +2,8 @@ var express = require('express');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
-var privateKey = fs.readFileSync('server.key').toString();
-var certificate = fs.readFileSync('server.crt').toString();
+var privateKey = fs.readFileSync('/server.key').toString();
+var certificate = fs.readFileSync('/server.crt').toString();
 
 var options = {
   key : privateKey
