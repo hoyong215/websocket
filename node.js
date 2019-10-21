@@ -20,8 +20,9 @@ router.get("/", function (req, res) {
 });
 
 http.createServer(app).listen(port, function (req, res) {
-	console.log('server run');
-	res.send("<h1>111111111111111</h1>" );
+	console.log(new Date() + ' : nodejs page : test');
+	res.writeHead(404);
+	res.end();
 });
 
 
