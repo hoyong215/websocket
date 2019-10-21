@@ -19,10 +19,22 @@ const crypto = require('crypto');
 // 파일 시스템 모듈
 var fs = require('fs');
 
-
-httpsServer = router.get("/", function (req, res) {
+router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT + req.url);
 });
+
+/*
+var httpsServer = router.get("/", function (req, res) {
+	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT + req.url);
+});
+httpsServer.listen(HTTP_SERVER_PORT, () => {
+	console.log(new Date() + ' : Server running at');
+});
+
+http.createServer(app).listen(HTTP_SERVER_PORT, function () {
+	console.log('server run');
+});
+*/
 
 /*
 const WebSocket = require('ws');
