@@ -24,6 +24,13 @@ var httpsServer = http.createServer( function (request, response) {
 }).listen(HTTP_SERVER_PORT);;
 
 
+
+
+var WebSocketS = require("ws").Server;
+var wss = new WebSocketServer({ port: 3000 });
+
+/*
+
 // 웹소켓 서버 생성
 var wss = new WebSocketServer({
     server: httpsServer,
@@ -33,7 +40,7 @@ var wss = new WebSocketServer({
 
 
 
-/*
+
 const WebSocket = require('ws');
 const ws = new WebSocket('ws://121.134.7.206:5050');
  
