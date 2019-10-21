@@ -38,9 +38,9 @@ var fs = require('fs');
 
 // 인증서 파일(ca, key, cert 세가지 인자가 필요)
 var https_options = {
-    key:  fs.readFileSync('/server.key'),
-    cert: fs.readFileSync('/server.crt'),
-    ca:   fs.readFileSync('/server.crt')
+    key:  fs.readFileSync('./server.key'),
+    cert: fs.readFileSync('./server.crt'),
+    ca:   fs.readFileSync('./server.crt')
 };
 
 //  웹서버 생성
