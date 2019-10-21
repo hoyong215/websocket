@@ -27,7 +27,6 @@ var httpsServer = http.createServer( function (request, response) {
 
 
 var WebSocketS = require("ws").Server;
-var wss = new WebSocketServer({ port: HTTP_SERVER_PORT });
 
 /*
 
