@@ -1,13 +1,13 @@
 var http = require('http');
-var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
-var ejs = require('ejs');
+var router = express.Router();
+
 var app = express();
 app.use(bodyParser());
-var router = express.Router();
 app.use(express.static('public'));
 app.use(router);
+
 var port = process.env.PORT || 3000;
 
 // 소켓 모듈 (XCTL 연동용)
@@ -25,6 +25,18 @@ http.createServer(app).listen(port, function () {
 });
 
 
+
+
+var WebSocketS = require("ws").Server;
+var wss = new WebSocketServer({ port: 3000 });
+
+// 연결이 수립되면 클라이언트에 메시지를 전송하고 클라이언트로부터의 메시지를 수신한다
+wss.on("connection", function(ws) {
+  ws.send("Hello! I am a server.");
+  ws.on("message", function(message) {
+    console.log("Received: %s", message);
+  });
+});
 
 
 
