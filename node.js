@@ -8,10 +8,8 @@ app.use(bodyParser());
 app.use(express.static('public'));
 app.use(router);
 
-var HTTP_SERVER_PORT = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 //const HTTP_SERVER_PORT = 8887;
-var XCTL_SERVER_IP = '121.134.7.206'
-var XCTL_SERVER_PORT = '5050';
 /*
 // 암호화 모듈
 const crypto = require('crypto');
@@ -20,7 +18,7 @@ const crypto = require('crypto');
 var fs = require('fs');
 */
 router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT);
+	res.send("<h1>hello heroku node.js world</h1> - " + port);
 });
 
 /*
