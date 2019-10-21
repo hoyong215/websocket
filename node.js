@@ -20,7 +20,7 @@ const crypto = require('crypto');
 var fs = require('fs');
 
 router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT + req.url);
+	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT);
 });
 
 /*
