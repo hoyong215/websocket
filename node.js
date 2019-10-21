@@ -17,25 +17,21 @@ var httpsServer = router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1>");
 });
 */
-
 var httpsServer = http.createServer( function (request, response) {  
     response.writeHead(200, {'Content-Type' : 'text/plain'});
     response.write('Hello nodejs');
     response.end();
 }).listen(HTTP_SERVER_PORT);;
 
-/*
-var httpsServer = router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT + req.url);
-});
-httpsServer.listen(HTTP_SERVER_PORT, () => {
-	console.log(new Date() + ' : Server running at');
+
+// 웹소켓 서버 생성
+var wss = new WebSocketServer({
+    server: httpsServer,
+    autoAcceptConnections: false
 });
 
-http.createServer(app).listen(HTTP_SERVER_PORT, function () {
-	console.log('server run');
-});
-*/
+
+
 
 /*
 const WebSocket = require('ws');
@@ -45,12 +41,6 @@ console.log(new Date() + ' : Websocket Start : ');
 ws.on('open', function open() {
   ws.send('something');
 });
-
-
-
-
-
-
 
 //  웹서버 생성
 var httpsServer = https.createServer( https_options, function(request, response) {
