@@ -17,6 +17,7 @@ var WebSocketServer = require('ws').Server;
 
 
 router.get("/", function (req, res) {
+	alert('asd');
 	res.send("<h1>hello heroku node.js world</h1>");
 });
 
