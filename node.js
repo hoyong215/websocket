@@ -8,17 +8,17 @@ app.use(bodyParser());
 app.use(express.static('public'));
 app.use(router);
 
-var port = process.env.PORT || 8887;
+var HTTP_SERVER_PORT = process.env.PORT || 8887;
 //const HTTP_SERVER_PORT = 8887;
 //const XCTL_SERVER_IP = '121.134.7.206'
 //const XCTL_SERVER_PORT = '5050';
 
 var httpsServer = router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1>" + port );
+	res.send("<h1>hello heroku node.js world</h1>" + HTTP_SERVER_PORT );
 	res.send("<h1>hello heroku node.js world</h1>");
 });
 
-http.createServer(app).listen(port, function () {
+http.createServer(app).listen(HTTP_SERVER_PORT, function () {
 	console.log('server run');
 });
 
