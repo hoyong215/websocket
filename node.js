@@ -26,8 +26,8 @@ var WebSocketServer = require('ws').Server;
 
 // 웹소켓 서버 생성
 var wss = new WebSocketServer({
-    server: httpsServer,
-    autoAcceptConnections: false
+	server: httpsServer
+	//,autoAcceptConnections: false
 });
 
 
