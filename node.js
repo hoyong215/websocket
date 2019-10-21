@@ -13,7 +13,7 @@ var port = process.env.PORT || 8887;
 //const XCTL_SERVER_IP = '121.134.7.206'
 //const XCTL_SERVER_PORT = '5050';
 
-router.get("/", function (req, res) {
+var httpsServer = router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1>" + port );
 	res.send("<h1>hello heroku node.js world</h1>");
 });
