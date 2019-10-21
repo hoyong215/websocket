@@ -20,17 +20,9 @@ const crypto = require('crypto');
 var fs = require('fs');
 
 
-var httpsServer = router.get("/", function (req, res) {
+httpsServer = router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT + req.url);
 });
-httpsServer.listen(HTTP_SERVER_PORT, () => {
-	console.log(new Date() + ' : Server running at');
-});
-
-http.createServer(app).listen(HTTP_SERVER_PORT, function () {
-	console.log('server run');
-});
-
 
 /*
 const WebSocket = require('ws');
