@@ -11,7 +11,7 @@ app.use(router);
 var port = process.env.PORT || 3000;
 
 router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1>" + https_options );
+	res.send("<h1>hello heroku node.js world</h1>" + port );
 	res.send("<h1>hello heroku node.js world</h1>");
 });
 
