@@ -17,10 +17,14 @@ var httpsServer = router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1>" + HTTP_SERVER_PORT );
 	res.send("<h1>hello heroku node.js world</h1>");
 });
+httpsServer.listen(HTTP_SERVER_PORT, () => {
+	console.log(new Date() + ' : Server running at');
+});
 
 http.createServer(app).listen(HTTP_SERVER_PORT, function () {
 	console.log('server run');
 });
+
 
 /*
 var httpsServer = router.get("/", function (req, res) {
