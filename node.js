@@ -19,11 +19,11 @@ var httpsServer = router.get("/", function (req, res) {
 });
 */
 
-http.createServer(HTTP_SERVER_PORT, function (request, response) {  
+http.createServer( function (request, response) {  
     response.writeHead(200, {'Content-Type' : 'text/plain'});
     response.write('Hello nodejs');
     response.end();
-});
+}).listen(HTTP_SERVER_PORT);;
 
 /*
 var httpsServer = router.get("/", function (req, res) {
