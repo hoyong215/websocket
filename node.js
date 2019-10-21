@@ -35,6 +35,84 @@ var wss = new WebSocketServer({
 });
 
 
+// 웹소켓 연결 이벤트 등록
+var indexWeb = wss.on('connection', function(ws, req) {
+	console.log(new Date() + ' : Websocket Start : ');
+
+	// 소켓 생성
+	ws.xClient = new net.Socket();
+
+	// XCTL 소켓 연결
+	ws.xClient.connect(XCTL_SERVER_PORT, XCTL_SERVER_IP, function() {
+		console.log(new Date() + ' : XCTL Client Connected!!');
+
+		this.setTimeout(600);
+		this.setEncoding('utf8');
+
+		ws.xClient.on('data', function(data) {
+			console.log(new Date() + ' : XCTI -> Nodejs : ' + data);
+			var cmd = data.split('|')[0];
+			console.log(new Date() + ' : X -> N : Command : ' + cmd );
+
+			// 웹소켓을 사용하여 브라우저에 응답값 전송
+			ws.send(data);
+		});
+
+		ws.xClient.on('close', function() {
+			console.log(new Date() + ' : XCTI Client Closed!!');
+		});
+
+	});
+
+	ws.on('message', function incoming(message) {
+		console.log(new Date() + ' : UI -> Nodejs : ' + message)
+
+		// 암호화 SHA512
+		if(message.split('_')[0] == 'CLIENT') {
+
+			var pushMap = '';
+
+			for(var i in message.split('_')) {
+				if( i == 5 ){
+					pushMap += crypto.createHash('sha512').update( message.split('_')[5] ).digest('hex');
+				}else{
+					pushMap += message.split('_')[i] + '_';
+				}
+			}
+
+			message = pushMap;
+		}
+
+		console.log(new Date() + ' : Nodejs -> XCTL : ' + message)
+		ws.xClient.write(message);
+	});
+
+	ws.onclose = function(e) {
+		console.log(new Date() + ' : Websocket End!!');
+		ws.xClient.end();
+	};
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
