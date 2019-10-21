@@ -32,7 +32,7 @@ var wss = new WebSocketServer({
 
 
 // 웹소켓 연결 이벤트 등록
-var indexWeb = wss.on('connection', function(ws, req) {
+wss.on('connection', function(ws, req) {
 	console.log(new Date() + ' : Websocket Start : ');
 
 	// 소켓 생성
