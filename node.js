@@ -9,28 +9,33 @@ app.use(express.static('public'));
 app.use(router);
 
 //var port = process.env.PORT || 3000;
-var port = 8887;
+const HTTP_SERVER_PORT = 8887;
+const XCTL_SERVER_IP = '121.134.7.206'
+const XCTL_SERVER_PORT = '5050';
 
-// 소켓 모듈 (XCTL 연동용)
-var net = require('net');
-// 웹소켓 모듈 (UI 연결용)
-var WebSocketServer = require('ws').Server;
+// 암호화 모듈
+const crypto = require('crypto');
+
+// 파일 시스템 모듈
+var fs = require('fs');
 
 
-router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1> - " + port);
+var httpsServer = router.get("/", function (req, res) {
+	res.send("<h1>hello heroku node.js world</h1> - " + HTTP_SERVER_PORT + req.url);
+});
+httpsServer.listen(HTTP_SERVER_PORT, () => {
+	console.log(new Date() + ' : Server running at');
 });
 
-http.createServer(app).listen(port, function () {
+http.createServer(app).listen(HTTP_SERVER_PORT, function () {
 	console.log('server run');
 });
 
 
-
+/*
 const WebSocket = require('ws');
 const ws = new WebSocket('ws://121.134.7.206:5050');
  
-
 console.log(new Date() + ' : Websocket Start : ');
 ws.on('open', function open() {
   ws.send('something');
@@ -41,20 +46,6 @@ ws.on('open', function open() {
 
 
 
-
-
-const HTTP_SERVER_PORT = 8887;
-const XCTL_SERVER_IP = '121.134.7.206'
-const XCTL_SERVER_PORT = '5050';
-
-// 암호화 모듈
-const crypto = require('crypto');
-
-// 웹서버 모듈 (의존모듈들 없는것을 설치)
-var https = require('https');
-
-// 파일 시스템 모듈
-var fs = require('fs');
 
 //  웹서버 생성
 var httpsServer = https.createServer( https_options, function(request, response) {
@@ -80,13 +71,7 @@ var wss = new WebSocketServer({
     autoAcceptConnections: false
 });
 
-
-
-
-
-
-
-
+*/
 
 
 
