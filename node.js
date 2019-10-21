@@ -26,16 +26,11 @@ http.createServer(app).listen(port, function () {
 
 
 
-
-var WebSocketS = require("ws").Server;
-var wss = new WebSocketServer({ host:121.134.7.206, port: 5050 });
-
-// 연결이 수립되면 클라이언트에 메시지를 전송하고 클라이언트로부터의 메시지를 수신한다
-wss.on("connection", function(ws, req) {
-  ws.send("Hello! I am a server.");
-  ws.on("message", function(message) {
-    console.log("Received: %s", message);
-  });
+const WebSocket = require('ws');
+const ws = new WebSocket('ws://www.host.com/path');
+ 
+ws.on('open', function open() {
+  ws.send('something');
 });
 
 
