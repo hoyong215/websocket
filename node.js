@@ -30,6 +30,7 @@ const WebSocket = require('ws');
 const ws = new WebSocket('ws://121.134.7.206:5050');
  
 ws.on('open', function open() {
+	alert('asd');
   ws.send('something');
 });
 
