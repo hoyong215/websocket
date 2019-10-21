@@ -1,4 +1,4 @@
-/*
+/**/
 var http = require('http');
 var fs = require('fs');
 var express = require('express');
@@ -19,9 +19,9 @@ router.get("/", function (req, res) {
 http.createServer(app).listen(port, function () {
 	console.log('server run');
 });
-*/
 
 
+/*
 const HTTP_SERVER_PORT = 8887;
 const XCTL_SERVER_IP = '121.134.7.206'
 const XCTL_SERVER_PORT = '5050';
@@ -34,7 +34,7 @@ var https = require('https');
 
 // 파일 시스템 모듈
 var fs = require('fs');
-/*
+
 // 인증서 파일(ca, key, cert 세가지 인자가 필요)
 var https_options = {
     key:  fs.readFileSync('server.key'),
