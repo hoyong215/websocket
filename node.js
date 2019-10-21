@@ -27,12 +27,11 @@ http.createServer(app).listen(port, function () {
 
 
 const WebSocket = require('ws');
-const ws = new WebSocket('ws://www.host.com/path');
+const ws = new WebSocket('ws://121.134.7.206:5050');
  
 ws.on('open', function open() {
   ws.send('something');
 });
-
 
 
 /*
