@@ -85,7 +85,7 @@ var indexWeb = wss.on('connection', function(ws, req) {
 
 	ws.onclose = function(e) {
 		console.log(new Date() + ' : Websocket End!!');
-		ws.xClient.end();
+		//ws.xClient.end();
 	};
 
 });
