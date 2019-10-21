@@ -17,7 +17,7 @@ var WebSocketServer = require('ws').Server;
 
 
 router.get("/aa", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1>");
+	res.send("<h1>hello heroku node.js world</h1> - " + port);
 });
 
 http.createServer(app).listen(port, function () {
