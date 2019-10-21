@@ -9,14 +9,14 @@ var router = express.Router();
 app.use(express.static('public'));
 app.use(router);
 var https_options = {
-    key:  fs.readFileSync('./server.key'),
-    cert: fs.readFileSync('./server.crt'),
-    ca:   fs.readFileSync('./server.crt')
+    key:  fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.crt'),
+    ca:   fs.readFileSync('server.crt')
 };
 
 var port = process.env.PORT || 3000;
 router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1>");
+	res.send("<h1>hello heroku node.js world</h1>" + https_options );
 });
 
 http.createServer(app).listen(port, function () {
