@@ -18,7 +18,7 @@ var httpsServer = router.get("/", function (req, res) {
 	res.send("<h1>hello heroku node.js world</h1>");
 });
 
-http.createServer(app).listen(HTTP_SERVER_PORT, function () {
+httpsServer.createServer(app).listen(HTTP_SERVER_PORT, function () {
 	console.log('server run');
 });
 
