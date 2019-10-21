@@ -17,7 +17,6 @@ var WebSocketServer = require('ws').Server;
 
 
 router.get("/", function (req, res) {
-	alert('asd');
 	res.send("<h1>hello heroku node.js world</h1>");
 });
 
@@ -31,7 +30,6 @@ const WebSocket = require('ws');
 const ws = new WebSocket('ws://121.134.7.206:5050');
  
 ws.on('open', function open() {
-	alert('asd');
   ws.send('something');
 });
 
