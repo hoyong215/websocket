@@ -1,27 +1,30 @@
+var fs = require('fs');
+
+var options = {
+    key:  fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.crt'),
+    ca:   fs.readFileSync('server.crt')
+};
+
+var app = require('https').createServer(options, handler),
+    io = require('socket.io').listen(app);
+
+function handler(req, res) {
+    res.writeHead(200);
+    res.end("welcome sir!");
+}
+
+io.sockets.on('connection', function (socket) {
+    socket.on('message', function (data) {
+        socket.broadcast.emit('message', data);
+    });
+});
+
+app.listen(8543);
+
+
 
 /*
-var http = require('http');
-var fs = require('fs');
-var express = require('express');
-var bodyParser = require('body-parser');
-var ejs = require('ejs');
-
-var app = express();
-app.use(bodyParser());
-var router = express.Router();
-app.use(express.static('public'));
-app.use(router);
-
-var port = process.env.PORT || 3000;
-router.get("/", function (req, res) {
-	res.send("<h1>hello heroku node.js world</h1>");
-});
-
-http.createServer(app).listen(port, function () {
-	console.log('server run');
-});
-*/
-
 
 const HTTP_SERVER_PORT = 8887;
 const XCTL_SERVER_IP = '121.134.7.206'
@@ -50,7 +53,7 @@ var httpsServer = https.createServer( https_options, function(request, response)
     response.writeHead(404);
     response.end();
 });
-
+*/
 
 
 
