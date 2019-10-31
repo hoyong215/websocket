@@ -51,9 +51,9 @@ wss.on('connection', function(ws, req) {
 		this.setEncoding('utf8');
 
 		ws.xClient.on('data', function(data) {
-			console.log(new Date() + ' : XCTI -> Nodejs : ' + data);
+			console.log(new Date() + ' : Nodejs	<- XCTI		: ' + data);
 			var cmd = data.split('|')[0];
-			console.log(new Date() + ' : X -> N : Command : ' + cmd );
+			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			ws.send(data);
@@ -66,7 +66,7 @@ wss.on('connection', function(ws, req) {
 	});
 
 	ws.on('message', function incoming(message) {
-		console.log(new Date() + ' : UI -> Nodejs : ' + message)
+		console.log(new Date() + ' : UI		-> Nodejs	: ' + message);
 
 		// 암호화 SHA512
 		if(message.split('_')[0] == 'CLIENT') {
@@ -84,7 +84,7 @@ wss.on('connection', function(ws, req) {
 			message = pushMap;
 		}
 
-		console.log(new Date() + ' : Nodejs -> XCTL : ' + message)
+		console.log(new Date() + ' : Nodejs	-> XCTL		: ' + message);
 		ws.xClient.write(message);
 	});
 
