@@ -113,7 +113,10 @@ wss.on('connection', function(ws, req) {
 
 
 
-
+wss.on('message', function(message) {
+	console.log('--');
+	console.log(message);
+})
 
 
 
