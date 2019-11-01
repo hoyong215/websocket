@@ -64,12 +64,13 @@ wss.on('connection', function(ws, req) {
 		ws.xClient.on('close', function() {
 			console.log(new Date() + ' : XCTI Client Closed!!');
 		});
+		
+		ws.on('message', function( message ){
+			console.log('----');
+		})
 
 
 	});
-	ws.on('message', function( message ){
-		console.log('----');
-	})
 	
 
 	ws.on('message', function incoming(message) {
