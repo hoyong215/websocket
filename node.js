@@ -67,7 +67,7 @@ wss.on('connection', function(ws, req) {
 	});
 
 	ws.on('message', function incoming(message) {
-		console.log(new Date() + ' : UI -> Nodejs : ');
+		console.log(new Date() + ' : Nodejs <- UI : ');
 		console.log(message);
 
 		// 암호화 SHA512
