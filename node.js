@@ -60,14 +60,8 @@ wss.on('connection', function(ws, req) {
 			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
-			//ws.send(data);
-			
-			wss.clients.forEach(function each(client) {
-				if (client.readyState === WebSocket.OPEN) {
-					client.send(data);
-				}
-			});
-			
+			ws.send(data);
+			console.log(ws);
 
 		});
 		ws.xClient.on('close', function() {
