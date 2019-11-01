@@ -50,6 +50,46 @@ wss.on('connection', function(ws, req) {
 	ws.xClient.connect(XCTL_SERVER_PORT, XCTL_SERVER_IP, function() {
 		console.log(new Date() + ' : XCTL Client Connected!!');
 
+		
+		
+		
+		
+		ws.on('message', function incoming(message) {
+			console.log(new Date() + ' : U -> N : ' + message);
+
+			// 암호화 SHA512
+			if(message.split('_')[0] == 'CLIENT') {
+
+				var pushMap = '';
+
+				for(var i in message.split('_')) {
+					if( i == 5 ){
+						pushMap += crypto.createHash('sha512').update( message.split('_')[5] ).digest('hex');
+					}else{
+						pushMap += message.split('_')[i] + '_';
+					}
+				}
+
+				message = pushMap;
+			}
+
+
+
+			console.log(new Date() + ' : N -> X : ' + message);=
+			ws.xClient.write(message);
+		});
+
+		ws.onclose = function(e) {
+			console.log(new Date() + ' : Websocket End!!');
+			console.log();
+			//ws.xClient.end();
+		};
+		
+		
+		
+		
+		
+		
 		this.setTimeout(600);
 		this.setEncoding('utf8');
 		
@@ -70,40 +110,6 @@ wss.on('connection', function(ws, req) {
 
 	
 	
-	
-	
-	
-
-	ws.on('message', function incoming(message) {
-		console.log(new Date() + ' : U -> N : ' + message);
-
-		// 암호화 SHA512
-		if(message.split('_')[0] == 'CLIENT') {
-
-			var pushMap = '';
-
-			for(var i in message.split('_')) {
-				if( i == 5 ){
-					pushMap += crypto.createHash('sha512').update( message.split('_')[5] ).digest('hex');
-				}else{
-					pushMap += message.split('_')[i] + '_';
-				}
-			}
-
-			message = pushMap;
-		}
-		
-		
-		
-		console.log(new Date() + ' : N -> X : ' + message);=
-		ws.xClient.write(message);
-	});
-
-	ws.onclose = function(e) {
-		console.log(new Date() + ' : Websocket End!!');
-		console.log();
-		//ws.xClient.end();
-	};
 	
 });
 
