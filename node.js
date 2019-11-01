@@ -61,18 +61,17 @@ wss.on('connection', function(ws, req) {
 
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			ws.send(data);
-			console.log(ws);
 
 		});
 		ws.xClient.on('close', function() {
 			console.log(new Date() + ' : XCTI Client Closed!!');
 		});
 		
-
+		ws.xClient.on('message' function(re){
+			console.log('--');	
+		});
 	});	
-	ws.xClient.on('message' function(re){
-		console.log('--');	
-	});
+	
 
 	ws.on('message', function incoming(message) {
 		console.log(new Date() + ' : U -> N : ' + message);
