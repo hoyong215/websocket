@@ -45,6 +45,10 @@ wss.on('connection', function(ws, req) {
 	// 소켓 생성
 	ws.xClient = new net.Socket();
 
+	ws.on('open', function open() {
+		
+		
+		
 	// XCTL 소켓 연결
 	ws.xClient.connect(XCTL_SERVER_PORT, XCTL_SERVER_IP, function() {
 		console.log(new Date() + ' : XCTL Client Connected!!');
@@ -59,16 +63,21 @@ wss.on('connection', function(ws, req) {
 			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
-			ws.on('open', function open() {
-				console.log('open');
-				ws.send(data);
-			});
+			ws.send(data);
 			
 		});
 		ws.xClient.on('close', function() {
 			console.log(new Date() + ' : XCTI Client Closed!!');
 		});
 	});
+		
+		
+		
+	});
+		
+	
+	
+	
 	
 
 	ws.on('message', function incoming(message) {
