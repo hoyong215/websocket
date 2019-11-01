@@ -38,6 +38,7 @@ const crypto = require('crypto');
 
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
+	console.log();
 	console.log(new Date() + ' : Websocket Start : ');
 
 	// 소켓 생성
@@ -51,8 +52,8 @@ wss.on('connection', function(ws, req) {
 		this.setEncoding('utf8');
 
 		ws.xClient.on('data', function(data) {
-			console.log(new Date() + ' : Nodejs <- XCTI : ');
-			console.log(data);
+			console.log(new Date() + ' : Nodejs <- XCTI : ' + data);
+			
 			var cmd = data.split('|')[0];
 			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
@@ -67,8 +68,7 @@ wss.on('connection', function(ws, req) {
 	});
 
 	ws.on('message', function incoming(message) {
-		console.log(new Date() + ' : Nodejs <- UI : ');
-		console.log(message);
+		console.log(new Date() + ' : Nodejs <- UI : ' + message);
 
 		// 암호화 SHA512
 		if(message.split('_')[0] == 'CLIENT') {
@@ -86,13 +86,13 @@ wss.on('connection', function(ws, req) {
 			message = pushMap;
 		}
 
-		console.log(new Date() + ' : Nodejs -> XCTL : ');
-		console.log(message);
+		console.log(new Date() + ' : Nodejs -> XCTL : ' + message);
 		ws.xClient.write(message);
 	});
 
 	ws.onclose = function(e) {
 		console.log(new Date() + ' : Websocket End!!');
+		console.log();
 		//ws.xClient.end();
 	};
 
