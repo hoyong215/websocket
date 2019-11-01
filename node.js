@@ -67,7 +67,7 @@ wss.on('connection', function(ws, req) {
 			console.log(new Date() + ' : XCTI Client Closed!!');
 		});
 		
-		ws.xClient.on('message' function(re){
+		ws.xClient.on('end' function(re){
 			console.log('--');	
 		});
 	});	
