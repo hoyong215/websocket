@@ -70,6 +70,9 @@ wss.on('connection', function(ws, req) {
 		
 
 	});	
+	ws.xClient.on('message' function(re){
+		console.log('--');	
+	});
 
 	ws.on('message', function incoming(message) {
 		console.log(new Date() + ' : U -> N : ' + message);
