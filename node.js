@@ -49,24 +49,23 @@ wss.on('connection', function(ws, req) {
 	// XCTL 소켓 연결
 	ws.xClient.connect(XCTL_SERVER_PORT, XCTL_SERVER_IP, function() {
 		console.log(new Date() + ' : XCTL Client Connected!!');
-
 		this.setTimeout(600);
 		this.setEncoding('utf8');
-		
-		ws.xClient.on('data', function(data) {
-			console.log(new Date() + ' : X -> N : ' + data);
-
-			var cmd = data.split('|')[0];
-			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
-
-			// 웹소켓을 사용하여 브라우저에 응답값 전송
-			ws.send(data);
-			console.log(ws.send(data));
-		});
-		ws.xClient.on('close', function() {
-			console.log(new Date() + ' : XCTI Client Closed!!');
-		});
 	});	
+	ws.xClient.on('data', function(data) {
+		console.log(new Date() + ' : X -> N : ' + data);
+
+		var cmd = data.split('|')[0];
+		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
+
+		// 웹소켓을 사용하여 브라우저에 응답값 전송
+		ws.send(data);
+	});
+	ws.xClient.on('close', function() {
+		console.log(new Date() + ' : XCTI Client Closed!!');
+	});
+	
+	
 
 	ws.on('message', function incoming(message) {
 		console.log(new Date() + ' : U -> N : ' + message);
@@ -101,7 +100,6 @@ wss.on('connection', function(ws, req) {
 	
 	
 });
-
 
 
 
