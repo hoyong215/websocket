@@ -36,6 +36,9 @@ var net = require('net');
 // 암호화 모듈
 const crypto = require('crypto');
 
+
+function getConnection(){
+
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
 	console.log();
@@ -64,22 +67,6 @@ wss.on('connection', function(ws, req) {
 		ws.xClient.on('close', function() {
 			console.log(new Date() + ' : XCTI Client Closed!!');
 		});
-		
-		
-wss.on('message', function(ws, req) {
-	console.log('1');
-	// 소켓 생성
-	ws.xClient = new net.Socket();
-	
-	
-	ws.on('message', function incoming(message) {
-		console.log('2')
-	})
-})
-		
-		
-		
-
 	});
 	
 
@@ -119,8 +106,18 @@ wss.on('message', function(ws, req) {
 
 
 
+};
 
 
+function writeData(socket, data){
+  var success = !socket.write(data);
+  if (!success){
+      console.log("Server Send Fail");
+  }
+}
+ 
+var client = getConnection();
+writeData(client, '서버');
 
 
 
