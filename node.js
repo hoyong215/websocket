@@ -51,20 +51,25 @@ wss.on('connection', function(ws, req) {
 
 		this.setTimeout(600);
 		this.setEncoding('utf8');
-		ws.on('open', function open() {
-			ws.xClient.on('data', function(data) {
-				console.log(new Date() + ' : X -> N : ' + data);
+		
+		ws.xClient.on('data', function(data) {
+			console.log(new Date() + ' : X -> N : ' + data);
 
-				var cmd = data.split('|')[0];
-				// console.log(new Date() + ' : X -> N : Command : ' + cmd );
+			var cmd = data.split('|')[0];
+			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
-				// 웹소켓을 사용하여 브라우저에 응답값 전송
-				ws.send(data);
-
+			// 웹소켓을 사용하여 브라우저에 응답값 전송
+			ws.send(data);
+			
+			wss.clients.forEach(function each(client) {
+				if (client.readyState === WebSocket.OPEN) {
+					console.log('----');
+				}
 			});
-			ws.xClient.on('close', function() {
-				console.log(new Date() + ' : XCTI Client Closed!!');
-			});			
+
+		});
+		ws.xClient.on('close', function() {
+			console.log(new Date() + ' : XCTI Client Closed!!');
 		});
 		
 
