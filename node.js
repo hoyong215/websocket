@@ -94,14 +94,15 @@ wss.on('connection', function(ws, req) {
 		console.log();
 		//ws.xClient.end();
 	};
-
+	
+	wss.on('message', function(message) {
+		console.log('----');
+		console.log(message);
+	})
 });
 
 
-wss.on('message', function(message) {
-	console.log('----');
-	console.log(message);
-})
+
 
 
 
