@@ -110,10 +110,8 @@ wss.on('connection', function(ws, req) {
 
 
 function writeData(socket, data){
-  var success = !socket.write(data);
-  if (!success){
-      console.log("Server Send Fail");
-  }
+  console.log(socket);
+	console.log(data);
 }
  
 var client = getConnection();
