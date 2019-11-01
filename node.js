@@ -75,7 +75,7 @@ wss.on('connection', function(ws, req) {
 
 
 
-			console.log(new Date() + ' : N -> X : ' + message);=
+			console.log(new Date() + ' : N -> X : ' + message);
 			ws.xClient.write(message);
 		});
 
