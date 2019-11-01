@@ -37,8 +37,6 @@ var net = require('net');
 const crypto = require('crypto');
 
 
-function getConnection(){
-
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
 	console.log();
@@ -61,7 +59,10 @@ wss.on('connection', function(ws, req) {
 			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
-			ws.send(data);
+			ws.on('open', function open() {
+				console.log('open');
+				ws.send(data);
+			});
 			
 		});
 		ws.xClient.on('close', function() {
@@ -102,20 +103,6 @@ wss.on('connection', function(ws, req) {
 	
 });
 
-
-
-
-
-};
-
-
-function writeData(socket, data){
-  console.log(socket);
-	console.log(data);
-}
- 
-var wss = getConnection();
-writeData(wss, '서버');
 
 
 
