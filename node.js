@@ -59,16 +59,26 @@ wss.on('connection', function(ws, req) {
 
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			ws.send(data);
-			ws.on('message', function( message ){
-				console.log('-===');
-			})
+			
 		});
 		ws.xClient.on('close', function() {
 			console.log(new Date() + ' : XCTI Client Closed!!');
 		});
 		
 		
-
+wss.on('message', function(ws, req) {
+	console.log('1');
+	// 소켓 생성
+	ws.xClient = new net.Socket();
+	
+	
+	ws.on('message', function incoming(message) {
+		console.log('2')
+	})
+})
+		
+		
+		
 
 	});
 	
