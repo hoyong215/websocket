@@ -114,7 +114,7 @@ function writeData(socket, data){
 	console.log(data);
 }
  
-var client = getConnection();
+var wss = getConnection();
 writeData(wss, '서버');
 
 
