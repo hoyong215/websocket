@@ -95,12 +95,8 @@ wss.on('connection', function(ws, req) {
 		
 		
 		
-		console.log(new Date() + ' : N -> X : ' + message);
-		
-		    clients.forEach(function(client) {
-		      if (client !== sender)
-			ws.xClient.write(message);
-		    });
+		console.log(new Date() + ' : N -> X : ' + message);=
+		ws.xClient.write(message);
 	});
 
 	ws.onclose = function(e) {
