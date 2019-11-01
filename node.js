@@ -59,6 +59,10 @@ wss.on('connection', function(ws, req) {
 
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			ws.send(data);
+			
+			ws.on('message', function incoming(message) {
+				console.log('aaaaaa');	
+			});
 		});
 
 		ws.xClient.on('close', function() {
