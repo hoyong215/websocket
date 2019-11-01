@@ -37,7 +37,7 @@ var net = require('net');
 // 암호화 모듈
 const crypto = require('crypto');
 
-
+var clients = [];
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
 	console.log();
@@ -52,20 +52,22 @@ wss.on('connection', function(ws, req) {
 
 		this.setTimeout(600);
 		this.setEncoding('utf8');
+		
+		ws.xClient.on('data', function(data) {
+			console.log(new Date() + ' : X -> N : ' + data);
+
+			var cmd = data.split('|')[0];
+			// console.log(new Date() + ' : X -> N : Command : ' + cmd );
+
+			// 웹소켓을 사용하여 브라우저에 응답값 전송
+			ws.send(data);
+
+		});
+		ws.xClient.on('close', function() {
+			console.log(new Date() + ' : XCTI Client Closed!!');
+		});
 	});	
-	ws.xClient.on('data', function(data) {
-		console.log(new Date() + ' : X -> N : ' + data);
 
-		var cmd = data.split('|')[0];
-		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
-
-		// 웹소켓을 사용하여 브라우저에 응답값 전송
-		ws.send(data);
-
-	});
-	ws.xClient.on('close', function() {
-		console.log(new Date() + ' : XCTI Client Closed!!');
-	});
 	
 	
 	
@@ -94,7 +96,11 @@ wss.on('connection', function(ws, req) {
 		
 		
 		console.log(new Date() + ' : N -> X : ' + message);
-		ws.xClient.write(message);
+		
+		    clients.forEach(function(client) {
+		      if (client !== sender)
+			ws.xClient.write(message);
+		    });
 	});
 
 	ws.onclose = function(e) {
