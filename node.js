@@ -61,7 +61,7 @@ wss.on('connection', function(ws, req) {
 			ws.send(data);
 			
 			ws.on('message', function incoming(message) {
-				console.log('aaaaaa');	
+				console.log('aaaaaa' + message);	
 			});
 		});
 
