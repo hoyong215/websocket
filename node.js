@@ -66,7 +66,7 @@ wss.on('connection', function(ws, req) {
 		});
 		
 		ws.on('message', function( message ){
-			console.log('----');
+			console.log('-===');
 		})
 
 
