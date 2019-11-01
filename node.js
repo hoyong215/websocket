@@ -22,7 +22,8 @@ var httpsServer = http.createServer( function (request, response) {
 
 
 // 웹소켓 모듈 (UI 연결용)
-var WebSocketServer = require('ws').Server;
+var WebSocket = require('ws');
+var WebSocketServer = WebSocket.Server;
 
 // 웹소켓 서버 생성
 var wss = new WebSocketServer({
