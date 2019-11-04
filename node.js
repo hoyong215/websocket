@@ -37,12 +37,14 @@ var net = require('net');
 // 암호화 모듈
 const crypto = require('crypto');
 
+
+
 var clients = [];
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
 	console.log();
 	console.log(new Date() + ' : Websocket Start : ');
-
+	
 	// 소켓 생성
 	ws.xClient = new net.Socket();
 	
@@ -51,7 +53,13 @@ wss.on('connection', function(ws, req) {
 		console.log(new Date() + ' : XCTL Client Connected!!');
 		this.setTimeout(600);
 		this.setEncoding('utf8');
-	});	
+	});
+	
+	var send2 = function(data) {
+		console.log(new Date() + ' : N -> U ' + data);
+		ws.send(data);
+	};
+	
 	ws.xClient.on('data', function(data) {
 		console.log(new Date() + ' : X -> N : ' + data);
 
@@ -59,7 +67,8 @@ wss.on('connection', function(ws, req) {
 		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
-		ws.send(data);
+		ws.send2(data);
+		
 	});
 	ws.xClient.on('close', function() {
 		console.log(new Date() + ' : XCTI Client Closed!!');
