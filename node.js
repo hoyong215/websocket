@@ -54,7 +54,6 @@ wss.on('connection', function(ws, req) {
 		this.setTimeout(600);
 		this.setEncoding('utf8');
 	});
-	
 	ws.xClient.on('data', function(data) {
 		console.log(new Date() + ' : X -> N : ' + data);
 
@@ -70,7 +69,7 @@ wss.on('connection', function(ws, req) {
 		console.log(new Date() + ' : XCTI Client Closed!!');
 	});
 	
-	
+
 
 	ws.on('message', function incoming(message) {
 		console.log(new Date() + ' : U -> N : ' + message);
@@ -90,13 +89,10 @@ wss.on('connection', function(ws, req) {
 
 			message = pushMap;
 		}
-
-
-
+		
 		console.log(new Date() + ' : N -> X : ' + message);
 		ws.xClient.write(message);
 	});
-
 	ws.onclose = function(e) {
 		console.log(new Date() + ' : Websocket End!!');
 		console.log();
@@ -106,12 +102,6 @@ wss.on('connection', function(ws, req) {
 	
 });
 
-
-
-wss.on('message', function(message) {
-	console.log('--');
-	console.log(message);
-})
 
 
 
