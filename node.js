@@ -19,8 +19,6 @@ var httpsServer = http.createServer( function (request, response) {
     response.end();
 }).listen(HTTP_SERVER_PORT);;
 
-
-
 // 웹소켓 모듈 (UI 연결용)
 var WebSocket = require('ws');
 var WebSocketServer = WebSocket.Server;
@@ -38,8 +36,6 @@ var net = require('net');
 const crypto = require('crypto');
 
 
-
-var clients = [];
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
 	console.log();
@@ -96,7 +92,7 @@ wss.on('connection', function(ws, req) {
 	ws.onclose = function(e) {
 		console.log(new Date() + ' : Websocket End!!');
 		console.log();
-		//ws.xClient.end();
+		ws.xClient.end();
 	};
 	
 	
