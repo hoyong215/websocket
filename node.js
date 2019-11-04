@@ -55,7 +55,7 @@ wss.on('connection', function(ws, req) {
 		this.setEncoding('utf8');
 	});
 	
-	var send2 = function(data) {
+	ws.send2 = function(data) {
 		console.log(new Date() + ' : N -> U ' + data);
 		ws.send(data);
 	};
@@ -67,7 +67,7 @@ wss.on('connection', function(ws, req) {
 		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
-		send2(data);
+		ws.send2(data);
 		
 	});
 	ws.xClient.on('close', function() {
