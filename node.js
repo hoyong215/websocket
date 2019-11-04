@@ -67,7 +67,7 @@ wss.on('connection', function(ws, req) {
 		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
-		ws.send2(data);
+		send2(data);
 		
 	});
 	ws.xClient.on('close', function() {
