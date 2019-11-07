@@ -69,7 +69,7 @@ wss.on('connection', function(ws, req) {
 
 	ws.on('message', function incoming(message) {
 		console.log(new Date() + ' : U -> N : ' + message);
-
+/*
 		// 암호화 SHA512
 		if(message.split('_')[0] == 'CLIENT') {
 
@@ -85,7 +85,7 @@ wss.on('connection', function(ws, req) {
 
 			message = pushMap;
 		}
-		
+*/		
 		console.log(new Date() + ' : N -> X : ' + message);
 		ws.xClient.write(message);
 	});
