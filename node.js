@@ -71,7 +71,7 @@ wss.on('connection', function(ws, req) {
 	ws.on('message', function incoming(message) {
 		
 		
-		
+		/*
 		// 암호화 SHA512
 		if(message.split('_')[0] == 'CLIENT') {
 			var pushMap = '';
@@ -82,6 +82,12 @@ wss.on('connection', function(ws, req) {
 					pushMap += message.split('_')[i] + '_';
 				}
 			}
+			phoneNum = pushMap;
+		}
+		*/
+		if(message.split('_')[0] == 'CLIENT') {
+			var pushMap = '';
+			pushMap = message.split('_')[2];
 			phoneNum = pushMap;
 		}
 		
