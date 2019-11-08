@@ -57,7 +57,7 @@ wss.on('connection', function(ws, req) {
 
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
 		console.log(new Date() + ' : U <- N <- X = ' + phoneNum);
-		console.log(data)
+		console.log(new Date() + ' : ' + data);
 		ws.send(data);
 		
 	});
@@ -91,7 +91,7 @@ wss.on('connection', function(ws, req) {
 		}
 		
 		console.log(new Date() + ' : U -> N -> X = ' + phoneNum);
-		console.log(message)
+		console.log(new Date() + ' : ' + message);
 		ws.xClient.write(message);
 	});
 	ws.onclose = function(e) {
