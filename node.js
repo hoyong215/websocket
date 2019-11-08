@@ -35,6 +35,7 @@ var net = require('net');
 // 암호화 모듈
 const crypto = require('crypto');
 
+var phoneNum = '';
 
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
@@ -68,25 +69,24 @@ wss.on('connection', function(ws, req) {
 
 
 	ws.on('message', function incoming(message) {
-		console.log(new Date() + ' : U -> N : ' + message);
-/*
+		
+		
+		
 		// 암호화 SHA512
 		if(message.split('_')[0] == 'CLIENT') {
-
 			var pushMap = '';
-
 			for(var i in message.split('_')) {
-				if( i == 5 ){
+				if( i == 2 ){
 					pushMap += crypto.createHash('sha512').update( message.split('_')[5] ).digest('hex');
 				}else{
 					pushMap += message.split('_')[i] + '_';
 				}
 			}
-
-			message = pushMap;
+			phoneNum = pushMap;
 		}
-*/		
-		console.log(new Date() + ' : N -> X : ' + message);
+		
+		console.log(new Date() + ' : U -> N : phoneNum : ' + message);
+		console.log(new Date() + ' : N -> X : phoneNum : ' + message);
 		ws.xClient.write(message);
 	});
 	ws.onclose = function(e) {
