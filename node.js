@@ -90,8 +90,8 @@ wss.on('connection', function(ws, req) {
 			phoneNum = pushMap;
 		}
 		
-		console.log(new Date() + ' : U -> N -> X = 전화번호 : ' + phoneNum);
-		console.log(new Date() + ' : U -> N -> X = ' + message);
+		console.log(new Date() + ' : U -> N / ' + phoneNum + ' / ' + message);
+		console.log(new Date() + ' : N -> X / ' + phoneNum + ' / ' + message);
 		ws.xClient.write(message);
 	});
 	ws.onclose = function(e) {
