@@ -56,7 +56,7 @@ wss.on('connection', function(ws, req) {
 		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
-		console.log(new Date() + ' : U <- N <- X = ' + phoneNum);
+		console.log(new Date() + ' : U <- N <- X = 전화번호 : ' + phoneNum);
 		console.log(new Date() + ' : U <- N <- X = ' + data);
 		ws.send(data);
 		
@@ -90,7 +90,7 @@ wss.on('connection', function(ws, req) {
 			phoneNum = pushMap;
 		}
 		
-		console.log(new Date() + ' : U -> N -> X = ' + phoneNum);
+		console.log(new Date() + ' : U -> N -> X = 전화번호 : ' + phoneNum);
 		console.log(new Date() + ' : U -> N -> X = ' + message);
 		ws.xClient.write(message);
 	});
