@@ -51,13 +51,13 @@ wss.on('connection', function(ws, req) {
 		this.setEncoding('utf8');
 	});
 	ws.xClient.on('data', function(data) {
-		console.log(new Date() + ' : X -> N : ' + data);
+		console.log(new Date() + ' : N <- X : ' + data);
 
 		var cmd = data.split('|')[0];
 		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
-		console.log(new Date() + ' : N -> U : ' + data);
+		console.log(new Date() + ' : U <- N : ' + data);
 		ws.send(data);
 		
 	});
