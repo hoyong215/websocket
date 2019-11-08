@@ -35,12 +35,13 @@ var net = require('net');
 // 암호화 모듈
 const crypto = require('crypto');
 
-var phoneNum = '';
+
 
 // 웹소켓 연결 이벤트 등록
 wss.on('connection', function(ws, req) {
 	console.log();
 	console.log(new Date() + ' : Websocket Start : ');
+	var phoneNum = '';
 	
 	// 소켓 생성
 	ws.xClient = new net.Socket();
