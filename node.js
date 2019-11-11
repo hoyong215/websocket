@@ -60,7 +60,7 @@ wss.on('connection', function(ws, req) {
 			for(var i in data.split('|')) {
 				var splitData = data.split('|')[i];
 				if( i != 0 ){
-					pushMap.push( { (splitData.split(':')[0]) : splitData.split(':')[1] } );   
+					pushMap.push( '{' + i +   ': splitData.split(':')[i] }' );   
 				}
 			}
 			console.log(pushMap);
