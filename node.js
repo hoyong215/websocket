@@ -58,11 +58,9 @@ wss.on('connection', function(ws, req) {
 			
 			var pushMap=[];
 			for(var i in data.split('|')) {
-				console.log(new Date() + ' : 1 : ' + data.split('|'));
 				pushMap.push( data.split('|')[i] );
 			}
 			console.log(pushMap);
-			console.log(pushMap.data);
 		
 		
 		
@@ -75,7 +73,7 @@ wss.on('connection', function(ws, req) {
 		
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
 		console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-		ws.send(pushMap);
+		ws.xClient.send(data);
 		console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 		
 	});
