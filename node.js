@@ -58,8 +58,8 @@ wss.on('connection', function(ws, req) {
 			
 			var pushMap = '';
 			for(var i in data.split('|')) {
-				console.log(new Date() + ' : 1 : ' + i);
-				pushMap += i
+				console.log(new Date() + ' : 1 : ' + data[i]);
+				pushMap += data[i]
 			}
 			console.log(pushMap);
 			phoneNum = pushMap;
