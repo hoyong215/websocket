@@ -52,9 +52,6 @@ wss.on('connection', function(ws, req) {
 		this.setTimeout(600);
 		this.setEncoding('utf8');
 		
-
-		
-	});
 		ws.xClient.on('data', function(data) {
 			var cmd = data.split('|')[0];
 			console.log(new Date() + ' : X -> N : Command : ' + cmd );
@@ -68,7 +65,7 @@ wss.on('connection', function(ws, req) {
 			
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-			ws.send( pushMap );
+			ws.send( data );
 			console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 
 		});
@@ -90,6 +87,9 @@ wss.on('connection', function(ws, req) {
 			ws.xClient.write(message);
 			console.log(new Date() + ' : N -> X / ' + phoneNum + ' / ' + message);
 		});
+		
+	});
+
 	ws.onclose = function(e) {
 		console.log(new Date() + ' : Websocket End!!');
 		console.log();
