@@ -42,6 +42,7 @@ wss.on('connection', function(ws, req) {
 	console.log();
 	console.log(new Date() + ' : Websocket Start : ');
 	var phoneNum = '';
+	var data2 = '';
 	
 	// 소켓 생성
 	ws.xClient = new net.Socket();
@@ -62,10 +63,10 @@ wss.on('connection', function(ws, req) {
 			}
 			console.log(pushMap);
 		
-		
+		data2 = data;
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
 		console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-		
+		ws.send();
 		console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 		
 	});
@@ -73,7 +74,7 @@ wss.on('connection', function(ws, req) {
 		ws.xClient.end();
 		console.log(new Date() + ' : XCTI Client Closed!!');
 	});
-	ws.send('aaa');
+	ws.send(data2);
 
 
 	ws.on('message', function incoming(message) {
