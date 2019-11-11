@@ -44,7 +44,7 @@ wss.on('connection', function(ws, req) {
 	var phoneNum = '';
 	
 	// 소켓 생성
-	ws.xClient = new net.Socket();
+	var ws.xClient = new net.Socket();
 	
 	// XCTL 소켓 연결
 	ws.xClient.connect(XCTL_SERVER_PORT, XCTL_SERVER_IP, function() {
@@ -63,17 +63,9 @@ wss.on('connection', function(ws, req) {
 			console.log(pushMap);
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
 		console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-		ws.xClient.send(data);
+		ws.send(data);
 		console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 		
 	});
@@ -86,21 +78,6 @@ wss.on('connection', function(ws, req) {
 
 	ws.on('message', function incoming(message) {
 		
-		
-		/*
-		// 암호화 SHA512
-		if(message.split('_')[0] == 'CLIENT') {
-			var pushMap = '';
-			for(var i in message.split('_')) {
-				if( i == 2 ){
-					pushMap += crypto.createHash('sha512').update( message.split('_')[5] ).digest('hex');
-				}else{
-					pushMap += message.split('_')[i] + '_';
-				}
-			}
-			phoneNum = pushMap;
-		}
-		*/
 		if(message.split('_')[0] == 'CLIENT') {
 			var pushMap = '';
 			pushMap = message.split('_')[2];
