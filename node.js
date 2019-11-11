@@ -55,41 +55,43 @@ wss.on('connection', function(ws, req) {
 
 		
 	});
-		ws.xClient.on('data', function(data) {
-			var cmd = data.split('|')[0];
-			console.log(new Date() + ' : X -> N : Command : ' + cmd );
+	ws.xClient.on('data', function(data) {
+		var cmd = data.split('|')[0];
+		console.log(new Date() + ' : X -> N : Command : ' + cmd );
 
-			var pushMap = new Array();
-			for(var i in data.split('|')) {
-				var splitData = data.split('|')[i];
-				pushMap.push( splitData );   
-			}
-			console.log( pushMap );
-			
-			// 웹소켓을 사용하여 브라우저에 응답값 전송
-			console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-			ws.send( data );
-			console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
+		var pushMap = new Array();
+		for(var i in data.split('|')) {
+			var splitData = data.split('|')[i];
+			pushMap.push( splitData );   
+		}
+		console.log( pushMap );
 
-		});
-		ws.xClient.on('close', function() {
-			ws.xClient.end();
-			console.log(new Date() + ' : XCTI Client Closed!!');
-		});
+		// 웹소켓을 사용하여 브라우저에 응답값 전송
+		console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
+		ws.send( data );
+		console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
+
+	});
+	ws.xClient.on('close', function() {
+		ws.xClient.end();
+		console.log(new Date() + ' : XCTI Client Closed!!');
+	});
 
 
-		ws.on('message', function incoming(message) {
+	ws.on('message', function incoming(message) {
 
-			if(message.split('_')[0] == 'CLIENT') {
-				var pushMap = '';
-				pushMap = message.split('_')[2];
-				phoneNum = pushMap;
-			}
+		if(message.split('_')[0] == 'CLIENT') {
+			var pushMap = '';
+			pushMap = message.split('_')[2];
+			phoneNum = pushMap;
+		}
 
-			console.log(new Date() + ' : U -> N / ' + phoneNum + ' / ' + message);
-			ws.xClient.write(message);
-			console.log(new Date() + ' : N -> X / ' + phoneNum + ' / ' + message);
-		});
+		console.log(new Date() + ' : U -> N / ' + phoneNum + ' / ' + message);
+		ws.xClient.write(message);
+		console.log(new Date() + ' : N -> X / ' + phoneNum + ' / ' + message);
+	});
+	
+	
 	ws.onclose = function(e) {
 		console.log(new Date() + ' : Websocket End!!');
 		console.log();
