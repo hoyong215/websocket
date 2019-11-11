@@ -62,6 +62,7 @@ wss.on('connection', function(ws, req) {
 				pushMap.push( data.split('|')[i] );
 			}
 			console.log(pushMap);
+			console.log(pushMap.data);
 		
 		
 		
