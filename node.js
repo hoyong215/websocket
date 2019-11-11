@@ -63,6 +63,7 @@ wss.on('connection', function(ws, req) {
 		
 	});
 	ws.xClient.on('close', function() {
+		ws.close();
 		console.log(new Date() + ' : XCTI Client Closed!!');
 	});
 	
