@@ -62,9 +62,11 @@ wss.on('connection', function(ws, req) {
 			}
 			console.log(pushMap);
 
+			var blob = new Blob(pushMap, {type: 'application/octet-binary'});
+			
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-			ws.send( pushMap, {type: 'application/octet-binary'} );
+			ws.send( blob );
 			console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 
 		});
