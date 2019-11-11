@@ -61,11 +61,11 @@ wss.on('connection', function(ws, req) {
 				var splitData = data.split('|')[i];
 				pushMap.push( splitData );   
 			}
-			console.log(pushMap);
+			console.log( String.valueOf(pushMap) );
 			
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-			ws.send( data );
+			ws.send( String.valueOf(pushMap) );
 			console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 
 		});
