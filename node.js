@@ -54,8 +54,25 @@ wss.on('connection', function(ws, req) {
 	});
 	ws.xClient.on('data', function(data) {
 		var cmd = data.split('|')[0];
-		// console.log(new Date() + ' : X -> N : Command : ' + cmd );
-
+		console.log(new Date() + ' : X -> N : Command : ' + cmd );
+			
+			var pushMap = '';
+			for(var i in data.split('|')) {
+				console.log(new Date() + ' : 1 : ' + i);
+				pushMap += i
+			}
+			console.log(pushMap);
+			phoneNum = pushMap;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		// 웹소켓을 사용하여 브라우저에 응답값 전송
 		console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
 		ws.send(data);
@@ -63,7 +80,7 @@ wss.on('connection', function(ws, req) {
 		
 	});
 	ws.xClient.on('close', function() {
-		ws.close();
+		ws.xClient.end();
 		console.log(new Date() + ' : XCTI Client Closed!!');
 	});
 	
