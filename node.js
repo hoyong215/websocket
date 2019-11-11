@@ -65,7 +65,7 @@ wss.on('connection', function(ws, req) {
 			
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-			ws.send( String.valueOf(pushMap) );
+			ws.send( pushMap );
 			console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 
 		});
