@@ -58,9 +58,8 @@ wss.on('connection', function(ws, req) {
 			
 			var pushMap=[];
 			for(var i in data.split('|')) {
-				var data2 = data.split('|')[i]
 				console.log(new Date() + ' : 1 : ' + data2);
-				pushMap.push( { i : data2 } );
+				pushMap.push( data.split('|')[i] );
 			}
 			console.log(pushMap);
 		
