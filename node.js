@@ -44,7 +44,7 @@ wss.on('connection', function(ws, req) {
 	var phoneNum = '';
 	
 	// 소켓 생성
-	var xClient = new net.Socket();
+	ws.xClient = new net.Socket();
 	
 	// XCTL 소켓 연결
 	ws.xClient.connect(XCTL_SERVER_PORT, XCTL_SERVER_IP, function() {
