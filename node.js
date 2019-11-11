@@ -52,6 +52,9 @@ wss.on('connection', function(ws, req) {
 		this.setTimeout(600);
 		this.setEncoding('utf8');
 		
+
+		
+	});
 		ws.xClient.on('data', function(data) {
 			var cmd = data.split('|')[0];
 			console.log(new Date() + ' : X -> N : Command : ' + cmd );
@@ -87,9 +90,6 @@ wss.on('connection', function(ws, req) {
 			ws.xClient.write(message);
 			console.log(new Date() + ' : N -> X / ' + phoneNum + ' / ' + message);
 		});
-		
-	});
-
 	ws.onclose = function(e) {
 		console.log(new Date() + ' : Websocket End!!');
 		console.log();
