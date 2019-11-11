@@ -59,15 +59,13 @@ wss.on('connection', function(ws, req) {
 			var pushMap = new Array();
 			for(var i in data.split('|')) {
 				var splitData = data.split('|')[i];
-				if( i != 0 ){
-					pushMap.push( { i : splitData.split(':')[i] } );   
-				}
+				pushMap.push( splitData );   
 			}
 			console.log(pushMap);
 			
 			// 웹소켓을 사용하여 브라우저에 응답값 전송
 			console.log(new Date() + ' : N <- X / ' + phoneNum + ' / ' + data);
-			ws.send( pushMap );
+			ws.send( data );
 			console.log(new Date() + ' : U <- N / ' + phoneNum + ' / ' + data);
 
 		});
